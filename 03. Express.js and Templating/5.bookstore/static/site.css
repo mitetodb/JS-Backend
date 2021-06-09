@@ -1,0 +1,74 @@
+html {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 18;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: rgb(227, 255, 243);
+}
+
+#container {
+    width: 980px;
+    margin: 0 auto;
+    background-color: white;
+}
+
+nav::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+nav a {
+    float: left;
+    display: block;
+    background-color: rgb(223, 221, 221);
+    margin: 0 4px;
+    padding: 12px 10px;
+    text-decoration: none;
+    color: black;
+}
+
+nav a:hover {
+    background-color: rgb(160, 250, 172);
+}
+
+main {
+    padding: 0 32px;
+}
+
+footer {
+    margin: 25px;
+}
+
+.info {
+    font-style: italic;
+}
+
+.book {
+    display: block;
+    margin-top: 16px;
+    list-style: none;
+    border: 1px solid #ccc;
+}
+
+.book-title {
+    display: block;
+    padding: 8px 16px;
+    background-color: rgb(204, 202, 202);
+}
+
+.book-title:hover {
+    background-color: rgb(160, 250, 172);
+}
+
+.book-author {
+    padding: 8px 16px;
+}
+
+.detailsLink {
+    display: block;
+    float: right;
+}

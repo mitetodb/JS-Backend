@@ -1,0 +1,33 @@
+<h1>Gotovo Stana!</h1>
+<p>Poluchi se.</p>
+<span>Name {{name}}</span>
+<br>
+<span>Age {{age}}</span>
+<br>
+<span>Items in Pocket: {{items.pocket}}</span>
+<br>
+<ul>
+    {{#each itemsList}}
+        <li>{{this}}</li>
+    {{/each}}
+</ul>
+<br>
+<ul>
+    {{#each itemsList2}}
+        <li>{{type}} - {{qty}}</li>
+    {{/each}}
+</ul>
+<br>
+<ul>
+    {{#each itemsList3}}
+        <li>{{this}}</li>
+    {{else}}
+        <span>This list is empty!</span>
+    {{/each}}
+</ul>
+<br>
+<ul>
+    {{#each itemsList4}}
+        {{> item}}
+    {{/each}}
+</ul>
