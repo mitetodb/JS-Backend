@@ -23,15 +23,16 @@ async function start() {
     const port = 3000;
     const app = express();
     
-    
+
     app.engine('hbs', hbs({
         extname: '.hbs'
     }));
     
     app.set('view engine', 'hbs');
     app.use('/', express.static('static'));
+    app.use('/js', express.static('js'));
     app.use(express.urlencoded({ extended: false })); // body-parser as middleware
-    app.use(await storage()); // init as middleware
+    app.use(await storage()); // init from storage as middleware
 
     
     app.get('/', catalog);
