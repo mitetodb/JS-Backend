@@ -2,6 +2,16 @@
 
 //npm install express --save-exact
 
+/* github
+
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/mitetodb/JS-Backend.git
+git push -u origin main 
+*/
+
 
 // logger.js ---------------------------------------
 function logger(input) {
