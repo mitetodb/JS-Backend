@@ -11,4 +11,11 @@ client.connect((err) => {
     }
 
     console.log('Database connected...');
+
+    const db = client.db('test');
+    const collection = db.collection('cats');
+
+    collection.find({}).toArray((err, data) => {
+        console.log(data);
+    });
 });
