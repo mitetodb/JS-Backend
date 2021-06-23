@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const Cat = require('./models/Cat');
+const Comment = require('./models/Comment');
 const Person = require('./models/Person');
+const Post = require('./models/Post');
 
 start();
 
@@ -107,6 +109,36 @@ async function start() {
     //console.log(await Person.countDocuments( {firstName: 'Peter'})); // -> 1
 
 
-    const people = await Person.find({}).lean(false);
-    console.log(people.map(p => p.fullName));
+    /* const people = await Person.find({}).lean(false);
+    console.log(people.map(p => p.fullName)); */
+
+    /* const person = await Person.findOne({});
+
+    const post = new Post({
+        author: person,
+        title: 'New Post',
+        content: 'This is a new post content...'
+    });
+
+    await post.save(); */
+
+
+    /* const post = await Post.findOne({}).populate('author');
+    console.log(post); */
+
+    /* const post = await Post.findOne({}).populate('author');
+    const comment = new Comment({
+        author: post.author,
+        content: 'First Comment',
+        post
+    });
+    await comment.save();
+    post.comments.push(comment);
+    await post.save(); */
+
+    const post = await Post.findOne({}).populate('author').populate({
+        path: 'comments',
+        populate: 'author'
+    });
+    console.log(post);
 }
