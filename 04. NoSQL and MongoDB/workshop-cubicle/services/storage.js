@@ -24,10 +24,10 @@ async function init() {
 }
 
 async function getAll(query) {
-    let cubes = Object.entries(data).map(([id, val]) => Object.assign({}, { id }, val));
+    let cubes = Cube.find({}).lean();
 
     /* Filter cubes by query params */
-    if (query.search) {
+    /* if (query.search) {
         cubes = cubes.filter(c => c.name.toLowerCase().includes(query.search.toLowerCase()));
     }
 
@@ -37,16 +37,16 @@ async function getAll(query) {
 
     if (query.to) {
         cubes = cubes.filter(c => c.difficultyLevel <= query.to);
-    }
+    } */
 
     return cubes;
 }
 
 async function getById(id) {
-    const cube = data[id];
+    const cube = await Cube.findById(id).lean();
 
     if (cube) {
-        return Object.assign({}, { id }, cube);
+        return cube;
     } else {
         return undefined;
     }
@@ -58,13 +58,16 @@ async function create(cube) {
 }
 
 async function edit(id, cube) {
-    if (!data[id]) {
+    const existingCube = await Cube.findById(id);
+    
+    
+    if (!existingCube) {
         throw new ReferenceError('No such id in DB');
     }
     
-    data[id] = cube;
-
-    await persist();
+    Object.assign(existingCube, cube);
+    
+    return existingCube.save();
 }
 
 async function persist() {
