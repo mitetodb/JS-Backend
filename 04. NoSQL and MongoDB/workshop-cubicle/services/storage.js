@@ -1,12 +1,7 @@
-// load and parse data.json file.
-// provide ability to:
-// -read all entries
-// -read entry by id
-// -add new entry
-// -get entries by search criteria.
-
 const fs = require('fs/promises');
 const uniqid = require('uniqid');
+
+const Cube = require('../models/Cube');
 
 let data = {};
 
@@ -58,10 +53,8 @@ async function getById(id) {
 }
 
 async function create(cube) {
-    const id = uniqid();
-    data[id] = cube;
-
-    await persist();
+    const record = new Cube(cube);
+    await record.save();
 }
 
 async function edit(id, cube) {
