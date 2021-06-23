@@ -41,6 +41,21 @@ async function start() {
  */
 
     // ---------------------------------- read (extract data)
+ /* Person.findOne({'lastName':'Petrov'});
+    Person.find({}).where('age').gt(7).lt(14);
+    Person.find({}).where('facultyNumber').equals('123456');
+    Person.findOne({'lastName':'Kirilov'}).select('name age');  // selection of some properties
+    Person.find({}).sort({ age: -1 }); // sort -1 for decending. 1 for accending order
+    Person.find({}).sort({ age: -1 }).skip(10).limit(10);  // skip first 10 result and show the next 10 results. (pageSize * (page-1))
+
+    Student.find({})
+            .where('firstName').equals('gosho')
+            .where('age').gt(18).lt(65)
+            .sort({ age: -1 })
+            .skip(10)
+            .limit(10);
+     */
+
  /* const data1 = await Cat.find({});
     console.log(data1);
     
