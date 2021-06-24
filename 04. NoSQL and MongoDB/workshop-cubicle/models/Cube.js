@@ -24,6 +24,10 @@ const schema = new Schema({
     comments: [{ 
         type: Schema.Types.ObjectId, 
         ref: 'Comment' 
+    }],
+    accessories: [{
+        type: Schema.Types.ObjectId, 
+        ref: 'Accessory' 
     }]
 });
 

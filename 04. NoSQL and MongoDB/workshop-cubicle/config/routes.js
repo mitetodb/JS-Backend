@@ -1,10 +1,11 @@
 const { catalog } = require('../controllers/catalog');
 const { about } = require('../controllers/about');
-const { details } = require('../controllers/details');
+const { details, attach, attachPost } = require('../controllers/details');
 const { create, post: createPost } = require('../controllers/create');
 const { edit, post: editPost } = require('../controllers/edit');
 const { notFound } = require('../controllers/notFound');
 const { post: commentPost } = require('../controllers/comments');
+const { createAccessory, postAccessory } = require('../controllers/accessory');
 
 module.exports = (app) => {
     app.get('/', catalog);
@@ -19,5 +20,11 @@ module.exports = (app) => {
 
     app.post('/comments/:cubeId/create', commentPost);
     
+    app.get('/accessory/create', createAccessory);
+    app.post('/accessory/create', postAccessory);
+
+    app.get('/details/:id/attach', attach);
+    app.post('/details/:cubeId/attach', attachPost);
+
     app.all('*', notFound);
 };
