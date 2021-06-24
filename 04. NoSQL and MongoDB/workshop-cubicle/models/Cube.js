@@ -1,4 +1,5 @@
 const { Schema, model } = require('mongoose');
+const Comment = require('./Comment');
 
 const schema = new Schema({
     name: {
@@ -19,7 +20,11 @@ const schema = new Schema({
         type: Number,
         min: 1,
         max: 6
-    }
+    },
+    comments: [{ 
+        type: Schema.Types.ObjectId, 
+        ref: 'Comment' 
+    }]
 });
 
 module.exports = model('Cube', schema);
