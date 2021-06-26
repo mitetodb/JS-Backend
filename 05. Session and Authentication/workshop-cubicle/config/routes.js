@@ -1,4 +1,5 @@
 const { post: commentPost } = require('../controllers/comments');
+const { isAuth } = require('../middlewares/guards');
 
 const productController = require('../controllers/productController');
 const accessoryController = require('../controllers/accessoryController');
