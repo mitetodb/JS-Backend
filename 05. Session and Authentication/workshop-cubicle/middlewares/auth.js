@@ -8,7 +8,8 @@ module.exports = () => (req, res, next) => {
     
     req.auth = {
         register,
-        login
+        login,
+        logout
     };
     
     if (readToken(req)) {
@@ -49,6 +50,10 @@ module.exports = () => (req, res, next) => {
         }
     }
 
+    function logout() {
+        res.clearCookie(AUTH_COOKIE_NAME);
+    }
+
     function createToken(user) {
         const userViewModel = {
             _id: user._id, 
@@ -70,6 +75,7 @@ module.exports = () => (req, res, next) => {
             try {
                 const userData = jwt.verify(token, AUTH_TOKEN_SECRET);
                 req.user = userData;
+                res.locals.user = userData;
                 console.log('Known user: ', userData.username);
                 
             } catch (err) {
