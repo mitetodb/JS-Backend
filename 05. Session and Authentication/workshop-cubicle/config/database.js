@@ -1,11 +1,9 @@
 const mongoose = require('mongoose');
+const { DB_URI, DB_OPTIONS } = require('./config');
 
 module.exports = (app) => {
     return new Promise((resolve, reject) => {
-        mongoose.connect('mongodb://localhost:27017/cubicle', {
-            useNewUrlParser: true,
-            useUnifiedTopology: true
-        });
+        mongoose.connect(DB_URI, DB_OPTIONS);
     
         const db = mongoose.connection;
     

@@ -10,6 +10,6 @@ module.exports = {
         await req.storage.createComment(cubeId, comment);
     
 
-        res.redirect(`/details/${cubeId}`);
+        res.redirect(`/products/details/${cubeId}`);
     }
 };

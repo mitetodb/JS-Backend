@@ -18,11 +18,11 @@ router.get('/', async (req, res) => {
     res.render('index', ctx);
 });
 
-router.get('/create', (req, res) => {
+router.get('/create', isAuth(), (req, res) => {
     res.render('create', { title: 'Create Cube' });
 });
 
-router.post('/create', async (req, res) => {
+router.post('/create', isAuth(), async (req, res) => {
     //console.log(req.body);
 
     const cube = {
@@ -93,8 +93,8 @@ router.post('/edit/:id', async (req, res) => {
 
 });
 
-router.get('/details/:id/attach', async (req, res) => {
-    const cube = await req.storage.getById(req.params.id);
+router.get('/details/:cubeId/attach', async (req, res) => {
+    const cube = await req.storage.getById(req.params.cubeId);
     const accessories = await req.storage.getAllAccessories((cube.accessories || []).map(a => a._id));
     res.render('attach', {
         title: 'Attach Accessories',
@@ -103,14 +103,14 @@ router.get('/details/:id/attach', async (req, res) => {
     });
 });
 
-router.post('/details/:id/attach', async (req, res) => {
+router.post('/details/:cubeId/attach', async (req, res) => {
     const cubeId = req.params.cubeId;
     console.log(req.body.accessory);
     const accessoryId = req.body.accessory;
 
     await req.storage.attachAccessory(cubeId, accessoryId);
     
-    res.redirect(`/details/${cubeId}`);
+    res.redirect(`/products/details/${cubeId}`);
 });
 
 module.exports = router;
