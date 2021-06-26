@@ -1,9 +1,10 @@
 module.exports = {
     async post(req, res) {
+        const authorId = req.user._id;
         const cubeId = req.params.cubeId;
 
         const comment = {
-            author: req.body.author,
+            author: authorId,
             content: req.body.content
         };
 
