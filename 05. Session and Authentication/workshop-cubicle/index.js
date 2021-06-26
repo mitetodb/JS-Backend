@@ -4,7 +4,7 @@ const expressConfig = require('./config/express');
 const databaseConfid = require('./config/database');
 const routesConfig = require('./config/routes');
 
-const { init: storage } = require('./services/storage');
+const storage = require('./middlewares/storage');
 
 start();
 

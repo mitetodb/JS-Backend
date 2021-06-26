@@ -2,22 +2,6 @@ const Cube = require('../models/Cube');
 const Comment = require('../models/Comment');
 const Accessory = require('../models/Accessory');
 
-async function init() {
-    return (req, res, next) => {
-        req.storage = {
-            getAll,
-            getById,
-            create,
-            edit,
-            createComment,
-            createAccessory,
-            getAllAccessories,
-            attachAccessory
-        };
-        next();
-    };
-}
-
 async function getAll(query) {
     const options = {};
 
@@ -84,16 +68,6 @@ async function createComment(cubeId, comment) {
     await cube.save();
 }
 
-async function getAllAccessories(existing) {
-    return Accessory.find({ _id: { $nin: existing }}).lean();
-}
-
-async function createAccessory(accessory) {
-    const record = await Accessory(accessory);
-    
-    await record.save();
-}
-
 async function attachAccessory(cubeId, accessoryId) {
     const cube = await Cube.findById(cubeId);
     const accessory = await Accessory.findById(accessoryId);
@@ -107,13 +81,10 @@ async function attachAccessory(cubeId, accessoryId) {
 }
 
 module.exports = {
-    init,
+    edit,
     getAll,
     getById,
     create,
-    edit,
     createComment,
-    createAccessory,
-    getAllAccessories,
     attachAccessory
 };
